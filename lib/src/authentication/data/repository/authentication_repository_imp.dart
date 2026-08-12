@@ -23,9 +23,9 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
   @override
   DomainServiceType<UserEntity> login(LoginParams params) async {
     return await failureCollect(() async {
-      final response = await _apiHelper.post(url: ApiConstants.flavorApi("auth/login"), body: await params.toMap);
+      final response = await _apiHelper.post(url: ApiConstants.addToApiUrlPath("auth/login"), body: await params.toMap);
       final user = ApiLoggedUserResponse.fromJson(response['data']);
-      await _secureStorageRepository.setToken(user.getAsValidTokenEntity);
+      // await _secureStorageRepository.setToken(user.getAsValidTokenEntity);
       return Right(user.user.map);
     });
   }
@@ -33,11 +33,7 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
   @override
   DomainServiceType<void> clientRegister(ClientRegisterParams params) async {
     return await failureCollect(() async {
-      final response = await _apiHelper.post(url: ApiConstants.flavorApi("auth/register"), body: await params.toMap);
-      final data = ApiLoggedUserResponse.fromJson(response['data']);
-      final token = data.getTokenForSingleSession;
-      await _secureStorageRepository.setToken(token);
-      await _secureStorageRepository.setCachedUser(data.user.map.mapToCacheEntity);
+      await _apiHelper.post(url: ApiConstants.addToApiUrlPath("auth/register"), body: await params.toMap);
       return const Right(null);
     });
   }
@@ -48,17 +44,19 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
       switch (params.verifyCase) {
         case OtpScreenCaseEnum.register:
         case OtpScreenCaseEnum.login:
-          final result = await _apiHelper.post(url: ApiConstants.flavorApi("auth/verify-otp"), body: params.toMap);
-          UserEntity user = ApiUserModel.fromJson(result['data']).map;
+          final result = await _apiHelper.post(url: ApiConstants.addToApiUrlPath("auth/verify-otp"), body: await params.toMap);
+          UserEntity user = ApiUserModel.fromJson(result['data']['user']).map;
           if (CurrentAppRole.isClient) {
             user = user.copyWith(currentProviderRole: AppRoleEnum.client);
           } else if (CurrentAppRole.isProvider) {
             user = user.copyWith(currentProviderRole: AppRoleEnum.provider);
           }
           await _secureStorageRepository.setCachedUser(user.mapToCacheEntity);
+          final token = ApiLoggedUserResponse.fromJson(result['data']);
+          await _secureStorageRepository.setToken(token.getAsValidTokenEntity);
           break;
-        case OtpScreenCaseEnum.updatePhone:
-          await _apiHelper.post(url: ApiConstants.flavorApi("auth/verify-otp"), body: params.toMap);
+        case OtpScreenCaseEnum.changePhone:
+          await _apiHelper.post(url: ApiConstants.addToApiUrlPath("auth/verify-otp"), body: await params.toMap);
           await _secureStorageRepository.deleteAllCache();
       }
       return const Right(null);
@@ -68,7 +66,7 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
   @override
   DomainServiceType<void> resendOtp(ResendOtpParams params) async {
     return await failureCollect<void>(() async {
-      await _apiHelper.post(url: ApiConstants.flavorApi("auth/resend-otp"), body: params.toMap);
+      await _apiHelper.post(url: ApiConstants.addToApiUrlPath("auth/resend-otp"), body: await params.toMap);
       return const Right(null);
     });
   }
@@ -76,7 +74,7 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
   @override
   DomainServiceType<void> logOut() async {
     return await failureCollect<void>(() async {
-      await _apiHelper.post(url: ApiConstants.flavorApi("auth/logout"));
+      await _apiHelper.post(url: ApiConstants.addToApiUrlPath("auth/logout"));
       await _secureStorageRepository.deleteAllCache();
       return const Right(null);
     });
@@ -85,7 +83,7 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
   @override
   Future<Either<Failure, void>> deleteAccount() async {
     return await failureCollect<void>(() async {
-      await _apiHelper.delete(url: ApiConstants.flavorApi("auth/delete-account"));
+      await _apiHelper.delete(url: ApiConstants.addToApiUrlPath("profile"));
       await _secureStorageRepository.deleteAllCache();
       return const Right(null);
     });
@@ -94,7 +92,7 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
   @override
   DomainServiceType<void> canUpdateMobile(CanUpdatePhoneParams params) async {
     return await failureCollect<void>(() async {
-      await _apiHelper.post(url: ApiConstants.flavorApi("auth/change-mobile"), body: params.toMap);
+      await _apiHelper.post(url: ApiConstants.addToApiUrlPath("profile/change-phone"), body: params.toMap);
       return const Right(null);
     });
   }

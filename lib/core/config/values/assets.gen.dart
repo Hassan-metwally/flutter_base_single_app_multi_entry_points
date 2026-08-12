@@ -57,11 +57,11 @@ class $AssetsIllustrationsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/cart_empty.png
-  String get cartEmpty => 'assets/images/cart_empty.png';
-
   /// File path: assets/images/empty.png
   String get empty => 'assets/images/empty.png';
+
+  /// File path: assets/images/empty_cart.png
+  String get emptyCart => 'assets/images/empty_cart.png';
 
   /// File path: assets/images/empty_notifications.png
   String get emptyNotifications => 'assets/images/empty_notifications.png';
@@ -95,8 +95,8 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<String> get values => [
-    cartEmpty,
     empty,
+    emptyCart,
     emptyNotifications,
     money,
     notification,

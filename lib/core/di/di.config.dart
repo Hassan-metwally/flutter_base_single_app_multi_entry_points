@@ -116,6 +116,9 @@ import '../../src/chats_inbox/domain/repositories/chats_inbox_repository.dart'
 import '../../src/chats_inbox/domain/usecases/get_chats_inbox_usecase.dart'
     as _i388;
 import '../../src/chats_inbox/presentation/chats_inbox_cubit.dart' as _i659;
+import '../../src/common/data/data_sources/common_data_source.dart' as _i158;
+import '../../src/common/data/data_sources/menu_common_data_source.dart'
+    as _i791;
 import '../../src/common/data/repository/common_repository_imp.dart' as _i867;
 import '../../src/common/data/repository/menu_common_repository_imp.dart'
     as _i294;
@@ -236,9 +239,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i203.LanguageCacheDateSourceImp(),
     );
     gh.factory<_i351.DioHelper>(() => _i351.DioHelper(dio: gh<_i361.Dio>()));
-    gh.factory<_i92.CommonRepository>(
-      () => _i867.CommonRepositoryImp(gh<_i351.DioHelper>()),
-    );
     gh.factory<_i325.AddressRepository>(
       () => _i1066.AddressRepositoryImpl(gh<_i351.DioHelper>()),
     );
@@ -292,18 +292,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i325.AddressRepository>(),
       ),
     );
-    gh.factory<_i725.GetBanksUseCase>(
-      () => _i725.GetBanksUseCase(gh<_i92.CommonRepository>()),
-    );
-    gh.factory<_i212.GetCitiesUseCase>(
-      () => _i212.GetCitiesUseCase(gh<_i92.CommonRepository>()),
-    );
-    gh.factory<_i459.GetServicesUseCase>(
-      () => _i459.GetServicesUseCase(gh<_i92.CommonRepository>()),
-    );
-    gh.factory<_i1006.ChangeLanguageUseCase>(
-      () => _i1006.ChangeLanguageUseCase(gh<_i92.CommonRepository>()),
-    );
     gh.factory<_i309.ChatsInboxDatasource>(
       () => _i309.ChatsInboxDatasourceImpl(gh<_i351.DioHelper>()),
     );
@@ -311,8 +299,14 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i526.SecureStorageRepositoryImp(gh<_i177.SecureStorageDataSource>()),
     );
+    gh.factory<_i791.MenuCommonDataSource>(
+      () => _i791.MenuCommonDataSourceImp(gh<_i351.DioHelper>()),
+    );
     gh.factory<_i482.RatingRepository>(
       () => _i665.RatingRepositoryImpl(gh<_i995.RatingDatasource>()),
+    );
+    gh.factory<_i158.CommonDataSource>(
+      () => _i158.CommonDataSourceImp(gh<_i351.DioHelper>()),
     );
     gh.factory<_i526.CartDatasource>(
       () => _i526.CartDatasourceImpl(gh<_i351.DioHelper>()),
@@ -365,12 +359,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i351.SetTokenUseCase>(
       () => _i351.SetTokenUseCase(gh<_i351.SecureStorageRepository>()),
     );
-    gh.factory<_i646.MenuCommonRepository>(
-      () => _i294.MenuCommonRepositoryImp(
-        gh<_i351.DioHelper>(),
-        gh<_i351.SecureStorageRepository>(),
-      ),
-    );
     gh.factory<_i532.GetMapLocationAddressUseCase>(
       () => _i532.GetMapLocationAddressUseCase(gh<_i410.MapsRepository>()),
     );
@@ -392,6 +380,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1016.ProviderMoreRepository>(
       () => _i943.ProviderMoreRepositoryImp(
         gh<_i351.DioHelper>(),
+        gh<_i351.SecureStorageRepository>(),
+      ),
+    );
+    gh.factory<_i646.MenuCommonRepository>(
+      () => _i294.MenuCommonRepositoryImp(
+        gh<_i791.MenuCommonDataSource>(),
         gh<_i351.SecureStorageRepository>(),
       ),
     );
@@ -420,6 +414,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i1015.ToggleEnableNotificationUseCase(
         gh<_i646.MenuCommonRepository>(),
       ),
+    );
+    gh.factory<_i92.CommonRepository>(
+      () => _i867.CommonRepositoryImp(gh<_i158.CommonDataSource>()),
     );
     gh.factory<_i300.AuthenticationRepository>(
       () => _i469.AuthenticationRepositoryImp(
@@ -479,6 +476,18 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i255.UpdateProviderProfileUseCase(
         gh<_i1016.ProviderMoreRepository>(),
       ),
+    );
+    gh.factory<_i725.GetBanksUseCase>(
+      () => _i725.GetBanksUseCase(gh<_i92.CommonRepository>()),
+    );
+    gh.factory<_i212.GetCitiesUseCase>(
+      () => _i212.GetCitiesUseCase(gh<_i92.CommonRepository>()),
+    );
+    gh.factory<_i459.GetServicesUseCase>(
+      () => _i459.GetServicesUseCase(gh<_i92.CommonRepository>()),
+    );
+    gh.factory<_i1006.ChangeLanguageUseCase>(
+      () => _i1006.ChangeLanguageUseCase(gh<_i92.CommonRepository>()),
     );
     gh.factory<_i303.AddRateUsecase>(
       () => _i303.AddRateUsecase(gh<_i482.RatingRepository>()),

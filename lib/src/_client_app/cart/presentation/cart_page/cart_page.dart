@@ -96,7 +96,6 @@ class _CartPageState extends State<_CartPage> {
                     ? AppEmptyWidget(
                         text: appLocalizer.noItemsInCartCurrently,
                         subText: appLocalizer.pleaseComeBackLater,
-                        imagePath: AppImages.cartEmpty,
                       )
                     : _CartPageBody(cart: cart),
               ),

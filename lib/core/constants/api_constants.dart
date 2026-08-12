@@ -3,14 +3,14 @@ part of core;
 class ApiConstants {
   const ApiConstants._();
 
-  // static const String apiBaseUrl = "https://backend.azahmni.moltaqadev.com";
-  static const String apiBaseUrl = "https://backend.azhmny.com/";
+  static const String apiBaseUrl = "https://api-zahab.dev-moltaqa.cloud";
+  // static const String apiBaseUrl = "https://api-zahab-moltaqa.cloud";
 
-  static String clientApi(String url) => "/client-api/v1/$url";
-  static String providerApi(String url) => "/store-api/v1/$url";
-  static String sharedApi(String url) => "/shared-api/v1/$url";
+  static String clientApi(String url) => "/api/v1/client/$url";
+  static String providerApi(String url) => "/api/v1/client/$url";
+  static String sharedApi(String url) => "/api/v1/client/$url";
 
-  static String flavorApi(String url) {
+  static String addToApiUrlPath(String url) {
     if (CurrentAppRole.isClient) {
       return clientApi(url);
     } else if (CurrentAppRole.isProvider) {
