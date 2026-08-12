@@ -20,9 +20,15 @@ class OtpCubit extends Cubit<OtpState> {
 
   void verify(String verificationCode) async {
     emit(state.copyWith(verifyState: const Async.loading()));
-final result = await _verifyOtpUseCase(
-      VerifyOtpParams(verifyCase: arguments.verifyCase, verificationCode: verificationCode, countryCode: arguments.countryCode, phone: arguments.phone),
-    );    result.fold(
+    final result = await _verifyOtpUseCase(
+      VerifyOtpParams(
+        verifyCase: arguments.verifyCase,
+        verificationCode: verificationCode,
+        countryCode: arguments.countryCode,
+        phone: arguments.phone,
+      ),
+    );
+    result.fold(
       (failure) {
         emit(state.copyWith(verifyState: Async.failure(failure)));
       },
@@ -34,7 +40,9 @@ final result = await _verifyOtpUseCase(
 
   void resendOtp() async {
     emit(state.copyWith(resendState: const Async.loading()));
-    final result = await _resendOtpUseCase(ResendOtpParams(phone: arguments.phone, countryCode: arguments.countryCode, verifyCase: arguments.verifyCase));
+    final result = await _resendOtpUseCase(
+      ResendOtpParams(phone: arguments.phone, countryCode: arguments.countryCode, verifyCase: arguments.verifyCase),
+    );
     result.fold(
       (failer) {
         emit(state.copyWith(resendState: Async.failure(failer)));

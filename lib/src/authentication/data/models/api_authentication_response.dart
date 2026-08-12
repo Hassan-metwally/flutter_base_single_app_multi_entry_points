@@ -14,9 +14,9 @@ class ApiLoggedUserResponse {
 
   static Map<String, dynamic> _userJsonForEnvironment(Map<String, dynamic> json) {
     if (CurrentAppRole.isClient) {
-      return json["client"];
+      return json["user"];
     } else if (CurrentAppRole.isProvider) {
-      return json["provider"];
+      return json["user"];
     }
     throw Exception('Invalid app environment or provider role');
   }

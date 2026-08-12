@@ -93,10 +93,7 @@ class _CartPageState extends State<_CartPage> {
                 color: AppColors.backgroundColor,
                 backgroundColor: AppColors.primary,
                 child: cart.items.isEmpty
-                    ? AppEmptyWidget(
-                        text: appLocalizer.noItemsInCartCurrently,
-                        subText: appLocalizer.pleaseComeBackLater,
-                      )
+                    ? AppEmptyWidget(text: appLocalizer.noItemsInCartCurrently, subText: appLocalizer.pleaseComeBackLater)
                     : _CartPageBody(cart: cart),
               ),
             );

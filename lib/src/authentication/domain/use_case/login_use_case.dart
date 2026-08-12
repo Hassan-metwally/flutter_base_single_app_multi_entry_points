@@ -17,6 +17,7 @@ class LogInUseCase extends IUseCase<UserEntity, LoginParams> {
     return await _repository.login(params);
   }
 }
+
 class LoginParams extends Equatable {
   final String countryCode;
   final String phone;
@@ -24,10 +25,7 @@ class LoginParams extends Equatable {
   const LoginParams({required this.countryCode, required this.phone});
 
   Future<Map<String, dynamic>> get toMap async {
-    return {
-      "country_code": countryCode,
-      "phone": (phone.isNotEmpty && !phone.startsWith('0')) ? '0$phone' : phone,
-    };
+    return {"country_code": countryCode, "phone": (phone.isNotEmpty && !phone.startsWith('0')) ? '0$phone' : phone};
   }
 
   @override

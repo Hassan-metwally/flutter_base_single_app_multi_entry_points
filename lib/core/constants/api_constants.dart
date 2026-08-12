@@ -7,8 +7,8 @@ class ApiConstants {
   // static const String apiBaseUrl = "https://api-zahab-moltaqa.cloud";
 
   static String clientApi(String url) => "/api/v1/client/$url";
-  static String providerApi(String url) => "/api/v1/client/$url";
-  static String sharedApi(String url) => "/api/v1/client/$url";
+  static String providerApi(String url) => "/api/v1/provider/$url";
+  static String sharedApi(String url) => "/api/v1/shared/$url";
 
   static String addToApiUrlPath(String url) {
     if (CurrentAppRole.isClient) {
