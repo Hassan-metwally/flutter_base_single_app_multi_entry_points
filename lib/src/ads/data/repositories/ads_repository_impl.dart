@@ -2,9 +2,12 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../../core/core.dart';
+
 import '../../domain/entities/ad_entity.dart';
 import '../../domain/repositories/ads_repository.dart';
+
 import '../datasources/ads_datasource.dart';
+
 import '../models/api_ad_model.dart';
 
 @Injectable(as: AdsRepository)
