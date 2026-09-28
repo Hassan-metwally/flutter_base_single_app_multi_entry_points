@@ -57,9 +57,16 @@ class _ProviderMainPageState extends State<ProviderMainPage> with ProviderMainPa
     initObserver(onTabChanged: _onCurrentTapChanged);
     _addUnAuthenticatedListener();
 
+    // // Pusher Initialize
     // if (!GuestCheckerWidget.isGuest(context)) {
     //   PusherHandler.instance.initialize();
     // }
+
+    // // Deep Links Initialize
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   DeepLinksUtils.intit();
+    // });
+
   }
 
   @override
