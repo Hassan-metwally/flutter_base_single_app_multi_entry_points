@@ -28,7 +28,7 @@ extension ApiUserModelEXT on ApiUserModel {
     mobile: mobile ?? '',
     avatar: avatar ?? const AttachmentEntity.empty(),
     isVerified: isVerified,
-    currentProviderRole: null,
+    currentAppRole: null,
   );
 }
 

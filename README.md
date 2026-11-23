@@ -41,8 +41,7 @@ Channel: stable
 |-------------------|--------------------------|-----------------|-----------------------------|
 | 👑 Admin          | admin@admin.com          | 123123123       | Admin access to dashboard   |
 | 👨‍💼 Provider       | +966 500000000           | 1111            | Example provider login      |
-| 👨‍💼 Provider | +966 511111111           | 1111            | Example Provider login|
-| 👨‍💼 Client         | +966 522222222           | 1111            | Example client login        |
+| 👨‍💼 Client         | +966 511111111           | 1111            | Example client login        |
 
 🌐 **Dashboard URL**: [https://dashboard.azhimny.com](https://azhimny.moltaqadev.com/dashboard/home)
 

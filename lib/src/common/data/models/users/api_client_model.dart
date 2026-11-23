@@ -32,6 +32,6 @@ extension ApiClientModelEXT on ApiClientModel {
     avatar: avatar ?? const AttachmentEntity.empty(),
     isVerified: isVerified,
     isActive: isActive ?? false,
-    currentProviderRole: null,
+    currentAppRole: null,
   );
 }

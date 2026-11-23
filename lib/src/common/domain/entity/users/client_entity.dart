@@ -11,20 +11,12 @@ class ClientEntity extends UserEntity {
     required super.mobile,
     required super.avatar,
     required super.isVerified,
-    required super.currentProviderRole,
+    required super.currentAppRole,
     required this.isActive,
   });
 
   const ClientEntity.initial()
-    : this(
-        id: 0,
-        name: '',
-        mobile: '',
-        avatar: const AttachmentEntity.empty(),
-        isVerified: false,
-        isActive: false,
-        currentProviderRole: null,
-      );
+    : this(id: 0, name: '', mobile: '', avatar: const AttachmentEntity.empty(), isVerified: false, isActive: false, currentAppRole: null);
 
   @override
   ClientEntity copyWith({
@@ -34,7 +26,7 @@ class ClientEntity extends UserEntity {
     AttachmentEntity? avatar,
     bool? isVerified,
     bool? isActive,
-    AppRoleEnum? currentProviderRole,
+    AppRoleEnum? currentAppRole,
   }) {
     return ClientEntity(
       id: id ?? this.id,
@@ -43,7 +35,7 @@ class ClientEntity extends UserEntity {
       avatar: avatar ?? this.avatar,
       isVerified: isVerified ?? this.isVerified,
       isActive: isActive ?? this.isActive,
-      currentProviderRole: currentProviderRole ?? this.currentProviderRole,
+      currentAppRole: currentAppRole ?? this.currentAppRole,
     );
   }
 

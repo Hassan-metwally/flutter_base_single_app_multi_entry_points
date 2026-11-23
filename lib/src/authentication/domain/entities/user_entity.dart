@@ -11,7 +11,7 @@ class UserEntity extends Equatable {
   final String mobile;
   final AttachmentEntity avatar;
   final bool? isVerified;
-  final AppRoleEnum? currentProviderRole;
+  final AppRoleEnum? currentAppRole;
 
   const UserEntity({
     required this.id,
@@ -19,7 +19,7 @@ class UserEntity extends Equatable {
     required this.mobile,
     required this.avatar,
     required this.isVerified,
-    required this.currentProviderRole,
+    required this.currentAppRole,
   });
 
   UserEntity copyWith({
@@ -29,7 +29,7 @@ class UserEntity extends Equatable {
     AttachmentEntity? avatar,
     bool? isVerified,
     bool? isActive,
-    AppRoleEnum? currentProviderRole,
+    AppRoleEnum? currentAppRole,
   }) {
     return UserEntity(
       id: id ?? this.id,
@@ -37,16 +37,16 @@ class UserEntity extends Equatable {
       mobile: mobile ?? this.mobile,
       avatar: avatar ?? this.avatar,
       isVerified: isVerified ?? this.isVerified,
-      currentProviderRole: currentProviderRole ?? this.currentProviderRole,
+     currentAppRole: currentAppRole ?? this.currentAppRole,
     );
   }
 
   CacheUserEntity get mapToCacheEntity {
-    return CacheUserEntity(id: id, name: name, avatar: avatar.path, mobile: mobile, currentAppRole: currentProviderRole);
+    return CacheUserEntity(id: id, name: name, avatar: avatar.path, mobile: mobile, currentAppRole: currentAppRole);
   }
 
   @override
-  List<Object?> get props => [id, name, mobile, avatar, isVerified, currentProviderRole];
+  List<Object?> get props => [id, name, mobile, avatar, isVerified, currentAppRole];
 }
 
 class PhoneEntity extends Equatable {

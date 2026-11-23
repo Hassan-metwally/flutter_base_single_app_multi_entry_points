@@ -11,20 +11,12 @@ class ProviderEntity extends UserEntity {
     required super.mobile,
     required super.avatar,
     required super.isVerified,
-    required super.currentProviderRole,
+    required super.currentAppRole,
     required this.isActive,
   });
 
   const ProviderEntity.initial()
-    : this(
-        id: 0,
-        name: '',
-        mobile: '',
-        avatar: const AttachmentEntity.empty(),
-        isVerified: false,
-        isActive: false,
-        currentProviderRole: null,
-      );
+    : this(id: 0, name: '', mobile: '', avatar: const AttachmentEntity.empty(), isVerified: false, isActive: false, currentAppRole: null);
 
   @override
   ProviderEntity copyWith({
@@ -34,8 +26,8 @@ class ProviderEntity extends UserEntity {
     AttachmentEntity? avatar,
     bool? isVerified,
     bool? isActive,
-    bool? clearCurrentProviderRole,
-    AppRoleEnum? currentProviderRole,
+    bool? clearCurrentAppRole,
+    AppRoleEnum? currentAppRole,
   }) {
     return ProviderEntity(
       id: id ?? this.id,
@@ -44,7 +36,7 @@ class ProviderEntity extends UserEntity {
       avatar: avatar ?? this.avatar,
       isVerified: isVerified ?? this.isVerified,
       isActive: isActive ?? this.isActive,
-      currentProviderRole: currentProviderRole ?? this.currentProviderRole,
+      currentAppRole: currentAppRole ?? this.currentAppRole,
     );
   }
 

@@ -55,9 +55,9 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
           final result = await _apiHelper.post(url: ApiConstants.addToApiUrlPath("auth/verify-otp"), body: await params.toMap);
           UserEntity user = ApiUserModel.fromJson(result['data']['user']).map;
           if (CurrentAppRole.isClient) {
-            user = user.copyWith(currentProviderRole: AppRoleEnum.client);
+            user = user.copyWith(currentAppRole: AppRoleEnum.client);
           } else if (CurrentAppRole.isProvider) {
-            user = user.copyWith(currentProviderRole: AppRoleEnum.provider);
+            user = user.copyWith(currentAppRole: AppRoleEnum.provider);
           }
           await _secureStorageRepository.setCachedUser(user.mapToCacheEntity);
           final token = ApiLoggedUserResponse.fromJson(result['data']);

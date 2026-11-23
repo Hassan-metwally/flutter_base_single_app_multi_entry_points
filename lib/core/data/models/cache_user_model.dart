@@ -19,7 +19,7 @@ class CacheUserModel extends CacheUserEntity {
       name: encodedMap[_nameKey],
       avatar: encodedMap[_avatarKey],
       mobile: encodedMap[_kCacheMobileObjectKey],
-      currentAppRole: AppRoleEnum.fromJson(encodedMap[_kCurrentProviderRole]),
+      currentAppRole: AppRoleEnum.fromJson(encodedMap[_kCurrentAppRole]),
     );
   }
 
@@ -28,7 +28,7 @@ class CacheUserModel extends CacheUserEntity {
     _nameKey: name,
     _avatarKey: avatar,
     _kCacheMobileObjectKey: mobile,
-    _kCurrentProviderRole: currentAppRole.toString().split('.').last,
+    _kCurrentAppRole: currentAppRole.toString().split('.').last,
   };
 
   String get toJson => json.encode(toMap);
@@ -38,4 +38,4 @@ const String _idKey = "idKey";
 const String _nameKey = "nameKey";
 const String _avatarKey = "avatarKey";
 const String _kCacheMobileObjectKey = "kCacheMobileObjectKey";
-const String _kCurrentProviderRole = "kCurrentProviderRole";
+const String _kCurrentAppRole = "kCurrentAppRole";
