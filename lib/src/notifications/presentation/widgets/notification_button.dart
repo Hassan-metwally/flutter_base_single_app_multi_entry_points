@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/config/router/app_routes.dart';
 import '../../../../core/di/di.dart';
-import '../../../_provider_app/home/presentation/widgets/provider_home_app_bar_icon_button.dart';
-import '../../../_client_app/home/presentation/widgets/client_home_app_bar_icon_button.dart';
+import '../../../_provider_app/provider_home/presentation/widgets/provider_home_app_bar_icon_button.dart';
+import '../../../_client_app/client_home/presentation/widgets/client_home_app_bar_icon_button.dart';
 import '../../../select_role/app_role.dart';
 import '../notifications_cubit.dart';
 import '../notifications_page.dart';

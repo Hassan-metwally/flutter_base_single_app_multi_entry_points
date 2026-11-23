@@ -1,6 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/config/router/app_routes.dart';
 import '../../../../core/core.dart';
 import '../../../../material/buttons/app_button.dart';
 import '../../../../material/inputs/intel_phone/phone_field.dart';
@@ -31,6 +33,10 @@ class _ProviderLoginPageState extends State<ProviderLoginPage> {
       final params = LoginParams(countryCode: "+966", phone: phoneController.text.trim());
       context.read<LoginCubit>().login(params);
     }
+  }
+
+  void _onRegisterPressed() {
+    Navigator.of(context).pushNamed(AppRoutes.providerRegisterPage);
   }
 
   void _onLoginSuccess({required UserEntity user}) {
@@ -93,7 +99,23 @@ class _ProviderLoginPageState extends State<ProviderLoginPage> {
             padding: const EdgeInsets.symmetric(horizontal: 20).copyWith(bottom: 40),
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              children: [AppButton(text: appLocalizer.login, onPressed: _onLoginPressed, isLoading: state.isLoading)],
+              children: [
+                AppButton(text: appLocalizer.login, onPressed: _onLoginPressed, isLoading: state.isLoading),
+                const SizedBox(height: 24),
+                Text.rich(
+                  TextSpan(
+                    text: appLocalizer.dontHaveAccount,
+                    children: [
+                      TextSpan(
+                        text: "\t${appLocalizer.createAccount}",
+                        recognizer: TapGestureRecognizer()..onTap = _onRegisterPressed,
+                        style: TextStyles.regular14.copyWith(color: AppColors.primary),
+                      ),
+                    ],
+                  ),
+                  style: TextStyles.regular14,
+                ),
+              ],
             ),
           ),
         );

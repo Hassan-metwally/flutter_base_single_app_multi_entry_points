@@ -4,13 +4,15 @@ import 'package:responsive_framework/responsive_framework.dart';
 import '../../../src/_client_app/addresses/presentation/my_addresses/my_addresses_cubit.dart';
 import '../../../src/_client_app/addresses/presentation/my_addresses/my_addresses_page.dart';
 import '../../../src/_client_app/cart/presentation/cart_page/cart_page.dart';
-import '../../../src/_provider_app/more/presentation/personal_profile/provider_personal_profile_cubit.dart';
-import '../../../src/_provider_app/more/presentation/personal_profile/provider_personal_profile_page.dart';
-import '../../../src/_client_app/more/presentation/personal_profile/client_personal_profile_cubit.dart';
-import '../../../src/_client_app/more/presentation/personal_profile/client_personal_profile_page.dart';
+import '../../../src/_provider_app/provider_more/presentation/provider_personal_profile/provider_personal_profile_cubit.dart';
+import '../../../src/_provider_app/provider_more/presentation/provider_personal_profile/provider_personal_profile_page.dart';
+import '../../../src/_client_app/client_more/presentation/client_personal_profile/client_personal_profile_cubit.dart';
+import '../../../src/_client_app/client_more/presentation/client_personal_profile/client_personal_profile_page.dart';
 import '../../../app.dart';
 import '../../../src/authentication/presentation/_client_register/client_register_cubit.dart';
 import '../../../src/authentication/presentation/_client_register/client_register_page.dart';
+import '../../../src/authentication/presentation/_provider_register/provider_register_cubit.dart';
+import '../../../src/authentication/presentation/_provider_register/provider_register_page.dart';
 import '../../../src/authentication/presentation/login/login_cubit.dart';
 import '../../../src/authentication/presentation/login/provider_login_page.dart';
 import '../../../src/authentication/presentation/login/client_login_page.dart';
@@ -56,6 +58,8 @@ class AppRoutesGenerator {
       ////// Provider App Pages ////
       case AppRoutes.providerLoginPage:
         page = BlocProvider(create: (context) => LoginCubit(), child: const ProviderLoginPage());
+      case AppRoutes.providerRegisterPage:
+        page = BlocProvider(create: (context) => ProviderRegisterCubit(), child: const ProviderRegisterPage());
       case AppRoutes.providerPersonalProfile:
         page = BlocProvider(
           create: (context) => injector<ProviderPersonalProfileCubit>()..getData(),

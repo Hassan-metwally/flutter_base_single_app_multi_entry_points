@@ -51,29 +51,29 @@ import '../../src/_client_app/cart/presentation/update_cart_delivery_fees/update
     as _i308;
 import '../../src/_client_app/cart/presentation/upsert_cart_item/upsert_cart_item_cubit.dart'
     as _i293;
-import '../../src/_client_app/more/data/repository/client_more_repository_imp.dart'
+import '../../src/_client_app/client_more/data/repository/client_more_repository_imp.dart'
     as _i754;
-import '../../src/_client_app/more/domain/repository/client_more_repository.dart'
+import '../../src/_client_app/client_more/domain/repository/client_more_repository.dart'
     as _i297;
-import '../../src/_client_app/more/domain/use_cases/get_client_profile_use_case.dart'
+import '../../src/_client_app/client_more/domain/use_cases/client_get_profile_use_case.dart'
     as _i649;
-import '../../src/_client_app/more/domain/use_cases/update_client_profile_use_case.dart'
+import '../../src/_client_app/client_more/domain/use_cases/client_update_profile_use_case.dart'
     as _i411;
-import '../../src/_client_app/more/presentation/more_page/client_more_cubit.dart'
+import '../../src/_client_app/client_more/presentation/client_more_page/client_more_cubit.dart'
     as _i307;
-import '../../src/_client_app/more/presentation/personal_profile/client_personal_profile_cubit.dart'
+import '../../src/_client_app/client_more/presentation/client_personal_profile/client_personal_profile_cubit.dart'
     as _i291;
-import '../../src/_provider_app/more/data/repository/provider_more_repository_imp.dart'
+import '../../src/_provider_app/provider_more/data/repository/provider_more_repository_imp.dart'
     as _i943;
-import '../../src/_provider_app/more/domain/repository/provider_more_repository.dart'
+import '../../src/_provider_app/provider_more/domain/repository/provider_more_repository.dart'
     as _i1016;
-import '../../src/_provider_app/more/domain/use_cases/get_provider_profile_use_case.dart'
+import '../../src/_provider_app/provider_more/domain/use_cases/provider_get_profile_use_case.dart'
     as _i519;
-import '../../src/_provider_app/more/domain/use_cases/update_provider_profile_use_case.dart'
+import '../../src/_provider_app/provider_more/domain/use_cases/provider_update_profile_use_case.dart'
     as _i255;
-import '../../src/_provider_app/more/presentation/more_page/provider_more_cubit.dart'
+import '../../src/_provider_app/provider_more/presentation/provider_more_page/provider_more_cubit.dart'
     as _i362;
-import '../../src/_provider_app/more/presentation/personal_profile/provider_personal_profile_cubit.dart'
+import '../../src/_provider_app/provider_more/presentation/provider_personal_profile/provider_personal_profile_cubit.dart'
     as _i183;
 import '../../src/ads/data/datasources/ads_datasource.dart' as _i268;
 import '../../src/ads/data/repositories/ads_repository_impl.dart' as _i331;
@@ -86,6 +86,8 @@ import '../../src/authentication/domain/repository/authentication_repository.dar
     as _i300;
 import '../../src/authentication/domain/use_case/_client_register_use_case.dart'
     as _i468;
+import '../../src/authentication/domain/use_case/_provider_register_use_case.dart'
+    as _i470;
 import '../../src/authentication/domain/use_case/can_update_phone_use_case.dart'
     as _i439;
 import '../../src/authentication/domain/use_case/delete_account_use_case.dart'
@@ -427,6 +429,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i468.ClientRegisterUseCase>(
       () => _i468.ClientRegisterUseCase(gh<_i300.AuthenticationRepository>()),
     );
+    gh.factory<_i470.ProviderRegisterUseCase>(
+      () => _i470.ProviderRegisterUseCase(gh<_i300.AuthenticationRepository>()),
+    );
     gh.factory<_i439.CanUpdatePhoneUseCase>(
       () => _i439.CanUpdatePhoneUseCase(gh<_i300.AuthenticationRepository>()),
     );
@@ -472,8 +477,8 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i519.GetProviderProfileUseCase(gh<_i1016.ProviderMoreRepository>()),
     );
-    gh.factory<_i255.UpdateProviderProfileUseCase>(
-      () => _i255.UpdateProviderProfileUseCase(
+    gh.factory<_i255.ProviderUpdateProfileUseCase>(
+      () => _i255.ProviderUpdateProfileUseCase(
         gh<_i1016.ProviderMoreRepository>(),
       ),
     );
@@ -548,11 +553,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i577.CartCubit>(
       () => _i577.CartCubit(gh<_i461.GetCartItemsUsecase>()),
     );
-    gh.factory<_i649.GetClientProfileUseCase>(
-      () => _i649.GetClientProfileUseCase(gh<_i297.ClientMoreRepository>()),
+    gh.factory<_i649.ClientGetProfileUseCase>(
+      () => _i649.ClientGetProfileUseCase(gh<_i297.ClientMoreRepository>()),
     );
-    gh.factory<_i411.UpdateClientProfileUseCase>(
-      () => _i411.UpdateClientProfileUseCase(gh<_i297.ClientMoreRepository>()),
+    gh.factory<_i411.ClientUpdateProfileUseCase>(
+      () => _i411.ClientUpdateProfileUseCase(gh<_i297.ClientMoreRepository>()),
     );
     gh.factory<_i612.ClientWalletCubit>(
       () => _i612.ClientWalletCubit(
@@ -601,7 +606,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i183.ProviderPersonalProfileCubit>(
       () => _i183.ProviderPersonalProfileCubit(
         gh<_i519.GetProviderProfileUseCase>(),
-        gh<_i255.UpdateProviderProfileUseCase>(),
+        gh<_i255.ProviderUpdateProfileUseCase>(),
       ),
     );
     gh.factory<_i779.AdsCubit>(
@@ -620,8 +625,8 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i291.ClientPersonalProfileCubit>(
       () => _i291.ClientPersonalProfileCubit(
-        gh<_i649.GetClientProfileUseCase>(),
-        gh<_i411.UpdateClientProfileUseCase>(),
+        gh<_i649.ClientGetProfileUseCase>(),
+        gh<_i411.ClientUpdateProfileUseCase>(),
       ),
     );
     return this;

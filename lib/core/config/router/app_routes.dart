@@ -13,6 +13,7 @@ class AppRoutes {
   ////// Provider App Pages ////
   static const providerPersonalProfile = '/providerPersonalProfilePage';
   static const providerLoginPage = '/providerLoginPage';
+  static const providerRegisterPage = '/providerRegisterPage';
   static const providerWalletPage = '/providerWalletPage';
 
   /// Common and static and common pages

@@ -4,7 +4,7 @@ import 'package:rxdart/rxdart.dart';
 
 import '../../../../../core/config/router/app_routes.dart';
 import '../../../../../core/di/di.dart';
-import '../../../home/presentation/widgets/client_home_app_bar_icon_button.dart';
+import '../../../client_home/presentation/widgets/client_home_app_bar_icon_button.dart';
 import '../cart_page/cart_cubit.dart';
 import '../utils/cart_items_count_subscription.dart';
 

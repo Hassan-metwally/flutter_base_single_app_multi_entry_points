@@ -6,6 +6,7 @@ import '../../../select_role/app_role.dart';
 import '../../domain/entities/user_entity.dart';
 import '../../domain/repository/authentication_repository.dart';
 import '../../domain/use_case/_client_register_use_case.dart';
+import '../../domain/use_case/_provider_register_use_case.dart';
 import '../../domain/use_case/can_update_phone_use_case.dart';
 import '../../domain/use_case/login_use_case.dart';
 import '../../domain/use_case/resend_otp_use_case.dart';
@@ -31,6 +32,14 @@ class AuthenticationRepositoryImp implements AuthenticationRepository {
 
   @override
   DomainServiceType<void> clientRegister(ClientRegisterParams params) async {
+    return await failureCollect(() async {
+      await _apiHelper.post(url: ApiConstants.addToApiUrlPath("auth/register"), body: await params.toMap);
+      return const Right(null);
+    });
+  }
+
+  @override
+  DomainServiceType<void> providerRegister(ProviderRegisterParams params) async {
     return await failureCollect(() async {
       await _apiHelper.post(url: ApiConstants.addToApiUrlPath("auth/register"), body: await params.toMap);
       return const Right(null);
